@@ -4,7 +4,7 @@ import treatment from '../../../assets/images/treatment.png';
 
 const Treatment = () => {
     return (
-        <div className="hero bg-base-100">
+        <div className="hero mb-32">
             <div className="hero-content flex-col lg:flex-row">
                 <img alt='treatment' src={treatment} className="lg:w-2/5 rounded-lg shadow-2xl" />
                 <div>
