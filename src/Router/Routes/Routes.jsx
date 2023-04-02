@@ -5,6 +5,7 @@ import Register from '../../Pages/Authentication/Register/Register';
 import Home from '../../Pages/Home/Home/Home';
 import ContactUs from '../../Pages/Home/Contact Us/ContactUs';
 import Testimonial from '../../Pages/Home/Testimonial/Testimonial';
+import Appointment from '../../Pages/Appointment/Appointment/Appointment';
 
  const router = createBrowserRouter([
         {
@@ -22,6 +23,10 @@ import Testimonial from '../../Pages/Home/Testimonial/Testimonial';
                 {
                     path: 'reviews',
                     element: <Testimonial />
+                },
+                {
+                    path: '/appointment',
+                    element: <Appointment />
                 },
                 {
                     path: '/login',
