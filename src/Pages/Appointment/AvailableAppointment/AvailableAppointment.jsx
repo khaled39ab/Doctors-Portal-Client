@@ -3,11 +3,11 @@ import React from 'react';
 
 const AvailableAppointment = ({ selectedDate }) => {
     return (
-        <div>
-            <div>
-                <p>You picked {format(selectedDate, 'PPP')}.</p>;
+        <section className='my-12'>
+            <div className='text-center text-secondary font-semibold'>
+                <p>Available Service on {format(selectedDate, 'PPP')}.</p>;
             </div>
-        </div>
+        </section>
     );
 };
 
