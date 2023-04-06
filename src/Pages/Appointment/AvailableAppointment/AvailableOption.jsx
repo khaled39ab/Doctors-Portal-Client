@@ -11,7 +11,7 @@ const AvailableOption = ({ availableOption }) => {
                 <p>{slots.length > 0 ? slots[0] : "Try Another Day"}</p>
                 <p>{slots.length} {slots.length > 1 ? 'spaces' : 'space'} Available.</p>
                 <div className="card-actions mt-4">
-                    <button className="btn btn-primary text-white">Book Appointment</button>
+                    <label htmlFor="booking-modal" className="btn btn-primary text-white">Book Appointment</label>
                 </div>
             </div>
         </div>
