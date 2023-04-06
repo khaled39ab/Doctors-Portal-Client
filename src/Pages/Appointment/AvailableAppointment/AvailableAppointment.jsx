@@ -6,7 +6,7 @@ import BookingModal from '../BookingModal/BookingModal';
 const AvailableAppointment = ({ selectedDate }) => {
 
     const [availableAppointment, setAvailableAppointment] = useState([]);
-    const [treatment, setTreatment] = useState(null);
+    const [treatment, setTreatment] = useState({});
 
     useEffect(() => {
         fetch('AvailableAppointment.json')
@@ -23,9 +23,9 @@ const AvailableAppointment = ({ selectedDate }) => {
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8'>
                 {
-                    availableAppointment.map(availableOption => <AvailableOption
-                        key={availableOption._id}
-                        availableOption={availableOption}
+                    availableAppointment.map(availableTime => <AvailableOption
+                        key={availableTime._id}
+                        availableTime={availableTime}
                         setTreatment={setTreatment}
                     ></AvailableOption>)
                 }
@@ -34,7 +34,7 @@ const AvailableAppointment = ({ selectedDate }) => {
                 treatment &&
                 <BookingModal
                     treatment={treatment}
-                />
+                ></BookingModal>
             }
         </section>
     );

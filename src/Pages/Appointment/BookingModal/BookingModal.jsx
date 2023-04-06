@@ -1,8 +1,8 @@
 import React from 'react';
 
-const BookingModal = ({treatment}) => {
+const BookingModal = ({ treatment }) => {
 
-    const {name} = treatment;
+    const { name } = treatment;
 
     return (
         <>
