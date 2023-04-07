@@ -30,11 +30,13 @@ const Login = () => {
                             <span className="label-text-alt cursor-pointer underline">Forget Password?</span>
                         </label>
                     </div>
-                    <br />
-                    <input type="submit" value='Login' className="btn btn-accent w-full text-white" />
+                    <input type="submit" value='Login' className="btn btn-accent w-full text-white mt-3" />
                 </form>
+                <p className='text-base mt-3 text-center'>New to Doctors Portal? <Link className='text-secondary' to={'/signUp'}>Create new account</Link> </p>
+
                 <div>
-                    <p className='text-sm'>New to Doctors Portal? <Link to={'/signUp'}>Create new account</Link>  </p>
+                    <div className="divider">OR</div>
+                    <button className='btn btn-outline w-full'>Continue With Google</button>
                 </div>
             </div>
         </div>
