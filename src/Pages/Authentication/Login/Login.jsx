@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
 
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
     const handleLogin = data => {
         console.log(data);
@@ -19,13 +19,25 @@ const Login = () => {
                         <label className="label">
                             <span className="label-text text-lg">Email</span>
                         </label>
-                        <input type="email" {...register("email")} placeholder="Enter Your Email" className="input input-bordered w-full" />
+                        <input
+                            type="email"
+                            {...register("email", { required: "Email Address is required" })}
+                            placeholder="Enter Your Email"
+                            className="input input-bordered w-full"
+                        />
+                        {errors.email && <p className='text-red-600'>{errors.email?.message}</p>}
                     </div>
                     <div className="form-control w-full">
                         <label className="label">
                             <span className="label-text text-lg">Password</span>
                         </label>
-                        <input type="password" {...register("password")} placeholder="Enter Your Password" className="input input-bordered w-full" />
+                        <input
+                            type="password"
+                            {...register("password", { required: "Password is required" })}
+                            placeholder="Enter Your Password"
+                            className="input input-bordered w-full"
+                        />
+                        {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
                         <label className="label">
                             <span className="label-text-alt cursor-pointer underline">Forget Password?</span>
                         </label>
