@@ -35,7 +35,7 @@ const Login = () => {
                             type="password"
                             {...register("password", {
                                 required: "Password is required",
-                                minLength: { value: 6, message: 'Password must be 6 character or longer' }
+                                minLength: { value: 6, message: 'Password must be 6 characters or longer' }
                             })}
                             placeholder="Enter Your Password"
                             className="input input-bordered w-full"
