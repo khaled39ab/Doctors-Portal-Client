@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
@@ -7,15 +7,18 @@ const SignUp = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { createUser } = useContext(AuthContext);
+    const [signUpError, setSignUpError] = useState('');
 
     const handleSignUp = data => {
-        
+        setSignUpError('')
         createUser(data.email, data.password)
             .then(res => {
                 const user = res.user;
                 // console.log(user);
             })
-            .catch(err => console.error(err))
+            .catch(err => {
+                setSignUpError(err.message)
+            })
     }
 
 
@@ -46,7 +49,12 @@ const SignUp = () => {
                             placeholder="Enter Your Email"
                             className="input input-bordered w-full"
                         />
-                        {errors.email && <p className='text-red-600'>{errors.email?.message}</p>}
+                        {
+                        errors.email && <p className='text-red-600'>{errors.email?.message}</p>
+                        }
+                        {
+                            signUpError && <p className='text-red-600'>{signUpError}</p>
+                        }
                     </div>
                     <div className="form-control w-full">
                         <label className="label">
