@@ -9,11 +9,11 @@ const SignUp = () => {
     const { createUser } = useContext(AuthContext);
 
     const handleSignUp = data => {
-        console.log(data);
+        
         createUser(data.email, data.password)
             .then(res => {
                 const user = res.user;
-                console.log(user);
+                // console.log(user);
             })
             .catch(err => console.error(err))
     }
