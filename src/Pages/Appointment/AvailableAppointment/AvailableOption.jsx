@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 
 const AvailableOption = ({ availableTime, setTreatment }) => {
 
@@ -23,4 +23,4 @@ const AvailableOption = ({ availableTime, setTreatment }) => {
     );
 };
 
-export default AvailableOption;
+export default AvailableOption; */

@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+/* import { format } from 'date-fns';
 import React, { useEffect, useState } from 'react';
 import AvailableOption from './AvailableOption';
 import BookingModal from '../BookingModal/BookingModal';
@@ -42,4 +42,4 @@ const AvailableAppointment = ({ selectedDate }) => {
     );
 };
 
-export default AvailableAppointment;
+export default AvailableAppointment; */

@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+/* import { format } from 'date-fns';
 import React from 'react';
 
 const BookingModal = ({ treatment, setTreatment, selectedDate }) => {
@@ -56,4 +56,4 @@ const BookingModal = ({ treatment, setTreatment, selectedDate }) => {
     );
 };
 
-export default BookingModal;
+export default BookingModal; */

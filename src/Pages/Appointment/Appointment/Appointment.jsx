@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+/* import React, { useState } from 'react';
 import AppointmentBanner from '../AppointmentBanner/AppointmentBanner';
 import AvailableAppointment from '../AvailableAppointment/AvailableAppointment';
 
@@ -19,4 +19,4 @@ const Appointment = () => {
     );
 };
 
-export default Appointment;
+export default Appointment; */
