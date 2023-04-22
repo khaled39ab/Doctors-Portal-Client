@@ -27,7 +27,7 @@ import SignUp from '../../Pages/Authentication/SignUp/SignUp';
                 },
                 {
                     path: '/appointment',
-                    element: <Appointment />
+                    // element: <Appointment />
                 },
                 {
                     path: '/login',
