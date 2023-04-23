@@ -15,8 +15,8 @@ const Login = () => {
         setLoginError('')
         loginUser(data.email, data.password)
             .then(res => {
-                const user = res.user;
-                console.log(user);
+                // const user = res.user;
+                // console.log(user);
                 navigate('/');
             })
             .catch(err => {
@@ -26,8 +26,13 @@ const Login = () => {
 
     const handleGoogleLogin = () => {
         googleLogin()
-            .then(res => console.log(res.user))
-            .catch(err => console.error(err.message))
+            .then(res => {
+                // console.log(res.user)
+                navigate('/')
+            })
+            .catch(err => {
+                setLoginError(err.message)
+            })
     }
 
 
