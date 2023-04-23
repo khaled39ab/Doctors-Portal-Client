@@ -1,13 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 
 const Login = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { loginUser } = useContext(AuthContext);
+    const { loginUser, googleLogin } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
+    const navigate = useNavigate();
 
 
     const handleLogin = data => {
@@ -16,11 +17,18 @@ const Login = () => {
             .then(res => {
                 const user = res.user;
                 console.log(user);
+                navigate('/');
             })
             .catch(err => {
                 setLoginError(err.message);
             })
     };
+
+    const handleGoogleLogin = () => {
+        googleLogin()
+            .then(res => console.log(res.user))
+            .catch(err => console.error(err.message))
+    }
 
 
     return (
@@ -69,7 +77,7 @@ const Login = () => {
 
                 <div>
                     <div className="divider">OR</div>
-                    <button className='btn btn-outline w-full'>Continue With Google</button>
+                    <button onClick={handleGoogleLogin} className='btn btn-outline w-full'>Continue With Google</button>
                 </div>
             </div>
         </div>
