@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import AppointmentBanner2 from '../AppointmentBanner2/AppointmentBanner2';
 
 const AppointmentPeriod = () => {
@@ -9,4 +9,4 @@ const AppointmentPeriod = () => {
     );
 };
 
-export default AppointmentPeriod;
+export default AppointmentPeriod; */
