@@ -7,6 +7,7 @@ import ContactUs from '../../Pages/Home/Contact Us/ContactUs';
 import Testimonial from '../../Pages/Home/Testimonial/Testimonial';
 import Appointment from '../../Pages/Appointment/Appointment/Appointment';
 import SignUp from '../../Pages/Authentication/SignUp/SignUp';
+import AppointmentPeriod from '../../Pages/Appointment Period/AppointmentPeriod/AppointmentPeriod';
 
  const router = createBrowserRouter([
         {
@@ -27,7 +28,7 @@ import SignUp from '../../Pages/Authentication/SignUp/SignUp';
                 },
                 {
                     path: '/appointment',
-                    // element: <Appointment />
+                    element: <AppointmentPeriod />
                 },
                 {
                     path: '/login',
