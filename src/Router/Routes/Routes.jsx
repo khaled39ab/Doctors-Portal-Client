@@ -28,7 +28,7 @@ import AppointmentPeriod from '../../Pages/Appointment Period/AppointmentPeriod/
                 },
                 {
                     path: '/appointment',
-                    element: <AppointmentPeriod />
+                    element: <Appointment />
                 },
                 {
                     path: '/login',
