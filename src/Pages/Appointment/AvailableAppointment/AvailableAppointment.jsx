@@ -2,17 +2,24 @@ import { format } from 'date-fns';
 import React, { useEffect, useState } from 'react';
 import AvailableOption from './AvailableOption';
 import BookingModal from '../BookingModal/BookingModal';
+import { useQuery } from 'react-query';
 
 const AvailableAppointment = ({ selectedDate }) => {
 
-    const [availableAppointment, setAvailableAppointment] = useState([]);
+    // const [availableAppointment, setAvailableAppointment] = useState([]);
     const [treatment, setTreatment] = useState(null);
 
-    useEffect(() => {
+    const {data : availableAppointment = []} = useQuery({
+        queryKey: ['availableAppointment'],
+        queryFn: () => fetch('http://localhost:4000/availableAppointment')
+        .then(res => res.json())
+    });
+    
+    /* useEffect(() => {
         fetch('http://localhost:4000/availableAppointment')
             .then(res => res.json())
             .then(data => setAvailableAppointment(data))
-    }, []);
+    }, []); */
 
 
     return (
