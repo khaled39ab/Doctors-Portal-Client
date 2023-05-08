@@ -13,7 +13,7 @@ const SignUp = () => {
         setSignUpError('')
         createUser(data.email, data.password)
             .then(res => {
-                const user = res.user;
+                // const user = res.user;
                 // console.log(user);
             })
             .catch(err => {
