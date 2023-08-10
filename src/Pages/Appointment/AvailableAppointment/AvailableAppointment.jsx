@@ -10,17 +10,18 @@ const AvailableAppointment = ({ selectedDate }) => {
     const [treatment, setTreatment] = useState(null);
     const date = format(selectedDate, 'PPP')
 
-    const {data : availableAppointment = []} = useQuery({
+    const { data: availableAppointment = [] } = useQuery({
         queryKey: ['availableAppointment', date],
-        queryFn: async() => {
+        queryFn: async () => {
             const res = await fetch(`http://localhost:4000/availableAppointment?date=${date}`)
             const data = await res.json()
             return data;
-        } 
+        }
     });
 
     /* useEffect(() => {
-        fetch('http://localhost:4000/availableAppointment')
+        fetch('AvailableAppointment.json')
+        // fetch('http://localhost:4000/availableAppointment')
             .then(res => res.json())
             .then(data => setAvailableAppointment(data))
     }, []); */

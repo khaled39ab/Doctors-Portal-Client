@@ -1,7 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Main from '../../Layout/Main';
 import Login from '../../Pages/Authentication/Login/Login';
-import Register from '../../Pages/Authentication/Register/Register';
 import Home from '../../Pages/Home/Home/Home';
 import ContactUs from '../../Pages/Home/Contact Us/ContactUs';
 import Testimonial from '../../Pages/Home/Testimonial/Testimonial';
@@ -36,10 +35,6 @@ import SignUp from '../../Pages/Authentication/SignUp/SignUp';
                 {
                     path: 'signUp',
                     element:<SignUp />
-                },
-                {
-                    path: '/register',
-                    element: <Register />
                 }
             ]
         }

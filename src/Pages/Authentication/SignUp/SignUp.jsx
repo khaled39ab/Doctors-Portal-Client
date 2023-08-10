@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
+import authBg from '../../../assets/images/backgroundAuth.jpg';
 
 const SignUp = () => {
 
@@ -23,8 +24,13 @@ const SignUp = () => {
 
 
     return (
-        <div className='h-[600px] flex justify-center items-center my-16'>
-            <div className='w-96 p-7 shadow-xl'>
+        <div
+            style={{
+                background: `url(${authBg})`
+            }}
+            className='h-[700px] flex justify-center items-center my-16 '
+        >
+            <div className='w-96 p-7 shadow-xl bg-slate-50 rounded-md'>
                 <h2 className='text-3xl font-semibold text-center mb-5'>Sign Up</h2>
                 <form onSubmit={handleSubmit(handleSignUp)}>
                     <div className="form-control w-full">
@@ -50,7 +56,7 @@ const SignUp = () => {
                             className="input input-bordered w-full"
                         />
                         {
-                        errors.email && <p className='text-red-600'>{errors.email?.message}</p>
+                            errors.email && <p className='text-red-600'>{errors.email?.message}</p>
                         }
                         {
                             signUpError && <p className='text-red-600'>{signUpError}</p>

@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
+import authBg from '../../../assets/images/backgroundAuth.jpg';
 
 const Login = () => {
 
@@ -37,8 +38,13 @@ const Login = () => {
 
 
     return (
-        <div className='h-[500px] flex justify-center items-center my-16'>
-            <div className='w-96 p-7 shadow-xl'>
+        <div
+            style={{
+                background: `url(${authBg})`
+            }}
+            className='h-[700px] flex justify-center items-center my-16'
+        >
+            <div className='w-96 p-7 shadow-xl bg-slate-50 rounded-md'>
                 <h2 className='text-3xl font-semibold text-center mb-5'>Login</h2>
                 <form onSubmit={handleSubmit(handleLogin)}>
                     <div className="form-control w-full">
