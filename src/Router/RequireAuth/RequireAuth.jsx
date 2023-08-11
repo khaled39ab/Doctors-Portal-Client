@@ -7,15 +7,11 @@ const RequireAuth = ({children}) => {
     const location = useLocation();
 
     if (isLoading) {
-        return <div class="min-h-[15rem] flex flex-col bg-white border shadow-sm rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7]">
-        <div class="flex flex-auto flex-col justify-center items-center p-4 md:p-5">
-          <div class="flex justify-center">
-            <div class="animate-spin inline-block w-6 h-6 border-[3px] border-current border-t-transparent text-blue-600 rounded-full" role="status" aria-label="loading">
-              <span class="sr-only">Loading...</span>
+        return<div class="flex justify-center items-center h-screen">
+            <div class="relative w-24 h-24 animate-spin rounded-full bg-gradient-to-r from-purple-400 via-blue-500 to-red-400 ">
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-gray-200 rounded-full border-2 border-white"></div>
             </div>
-          </div>
         </div>
-      </div>
     }
 
     if (!user) {
