@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 import authBg from '../../../assets/images/backgroundAuth.jpg';
 
@@ -10,6 +10,8 @@ const Login = () => {
     const { loginUser, googleLogin } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
 
     const handleLogin = data => {
@@ -18,7 +20,7 @@ const Login = () => {
             .then(res => {
                 // const user = res.user;
                 // console.log(user);
-                navigate('/');
+                navigate(from, { replace: true });
             })
             .catch(err => {
                 setLoginError(err.message);
@@ -29,7 +31,7 @@ const Login = () => {
         googleLogin()
             .then(res => {
                 // console.log(res.user)
-                navigate('/')
+                navigate(from, { replace: true })
             })
             .catch(err => {
                 setLoginError(err.message)
