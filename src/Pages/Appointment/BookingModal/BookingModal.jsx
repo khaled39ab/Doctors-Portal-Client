@@ -38,14 +38,14 @@ const BookingModal = ({ treatment, setTreatment, selectedDate }) => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 if (data.success) {
-                    setTreatment(null);
                     toast.success('Booking confirmed');
                 }
                 else {
                     toast.error('Already have an appointment');
                 }
+                setTreatment(null);
             })
 
     }
