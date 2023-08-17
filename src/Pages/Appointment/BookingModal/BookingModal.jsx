@@ -7,7 +7,7 @@ const BookingModal = ({ treatment, setTreatment, selectedDate }) => {
 
     const { name, slots } = treatment;
     const date = format(selectedDate, 'PPP');
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
 
     const handleBooking = e => {
@@ -32,21 +32,21 @@ const BookingModal = ({ treatment, setTreatment, selectedDate }) => {
         fetch('http://localhost:4000/bookings', {
             method: 'POST',
             headers: {
-                'content-type' : 'application/json'
+                'content-type': 'application/json'
             },
             body: JSON.stringify(booking)
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            if (data.acknowledged) {
-                setTreatment(null);
-                toast.success('Booking confirmed');
-            }
-            else{
-                toast.error(data.message);
-            }
-        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.success) {
+                    setTreatment(null);
+                    toast.success('Booking confirmed');
+                }
+                else {
+                    toast.error('Already have an appointment');
+                }
+            })
 
     }
 
