@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 import { toast } from 'react-hot-toast';
 
-const BookingModal = ({ treatment, setTreatment, selectedDate }) => {
+const BookingModal = ({ treatment, setTreatment, selectedDate , refetch}) => {
 
     const { name, slots } = treatment;
     const date = format(selectedDate, 'PPP');
@@ -45,6 +45,7 @@ const BookingModal = ({ treatment, setTreatment, selectedDate }) => {
                 else {
                     toast.error(`Already have an appointment on ${data.booking.appointmentDate} at ${data.booking.period}`);
                 }
+                refetch();
                 setTreatment(null);
             });
 
