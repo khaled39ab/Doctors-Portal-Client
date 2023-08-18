@@ -46,7 +46,7 @@ const BookingModal = ({ treatment, setTreatment, selectedDate }) => {
                     toast.error(`Already have an appointment on ${data.booking.appointmentDate} at ${data.booking.period}`);
                 }
                 setTreatment(null);
-            })
+            });
 
     }
 
