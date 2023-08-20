@@ -19,6 +19,9 @@ const Navbar = () => {
         <li><Link to={'/reviews'}>Reviews</Link></li>
         <li><Link to={'/contact'}>Contact Us</Link></li>
         {
+            user && <li><Link to={'/dashboard'}>Dashboard</Link></li>
+        }
+        {
             user?.uid ?
                 <li><button onClick={handleLogOut}>Sign Out</button></li> :
                 <li><Link to={'/login'}>Login</Link></li>
