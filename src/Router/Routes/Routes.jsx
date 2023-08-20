@@ -38,12 +38,12 @@ const router = createBrowserRouter([
                 children: [
                     {
                         path: '/dashboard/:my-appointment',
-                        element: <RequireAuth><MyAppointment></MyAppointment></RequireAuth>
+                        element: <MyAppointment />
                     },
                     {
                         path: '/dashboard/:my-review',
-                        element: <RequireAuth><MyReview></MyReview></RequireAuth>
-                    },
+                        element: <MyReview />
+                    }
                 ]
             },
             {
