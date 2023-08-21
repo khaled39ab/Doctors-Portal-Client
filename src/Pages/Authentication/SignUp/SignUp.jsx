@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 import authBg from '../../../assets/images/backgroundAuth.jpg';
 
@@ -9,6 +9,9 @@ const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { createUser } = useContext(AuthContext);
     const [signUpError, setSignUpError] = useState('');
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
     const handleSignUp = data => {
         setSignUpError('')
@@ -16,6 +19,7 @@ const SignUp = () => {
             .then(res => {
                 // const user = res.user;
                 // console.log(user);
+                navigate(from, { replace: true });
             })
             .catch(err => {
                 setSignUpError(err.message)
