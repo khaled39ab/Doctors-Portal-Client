@@ -38,7 +38,7 @@ const router = createBrowserRouter([
                 children: [
                     {
                         path: '/dashboard/:my-appointment',
-                        element: <MyAppointment />
+                        element: <MyAppointment />,
                     },
                     {
                         path: '/dashboard/:my-review',
