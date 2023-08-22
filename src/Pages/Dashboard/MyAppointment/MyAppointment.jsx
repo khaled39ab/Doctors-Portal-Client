@@ -15,51 +15,29 @@ const MyAppointment = () => {
             .then(data => setMyApp(data))
 
     }, [user.email, isLoading]);
-    
-    /* useEffect(() => {
-        if (user) {
-            fetch(`http://localhost:4000/bookings?email=${user.email}`)
-                .then(res => res.json())
-                .then(data => setMyApp(data))
-        }
-    }, [user]) */
 
     return (
         <div>
-            <h1>Total Appointment {myApp.length}</h1>
+            <h1 className='text-3xl font-bold text-center mb-5'>Total Appointment: {myApp.length}</h1>
             <div className="overflow-x-auto">
                 <table className="table">
-                    {/* head */}
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Name</th>
-                            <th>Job</th>
-                            <th>Favorite Color</th>
+                            <th>Treatment</th>
+                            <th>Date</th>
+                            <th>Time</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {/* row 1 */}
-                        <tr>
-                            <th>1</th>
-                            <td>Cy Ganderton</td>
-                            <td>Quality Control Specialist</td>
-                            <td>Blue</td>
-                        </tr>
-                        {/* row 2 */}
-                        <tr className="hover">
-                            <th>2</th>
-                            <td>Hart Hagerty</td>
-                            <td>Desktop Support Technician</td>
-                            <td>Purple</td>
-                        </tr>
-                        {/* row 3 */}
-                        <tr>
-                            <th>3</th>
-                            <td>Brice Swyre</td>
-                            <td>Tax Accountant</td>
-                            <td>Red</td>
-                        </tr>
+                        {
+                            myApp.map((app, index) => <tr className="hover">
+                                <th>{index + 1}</th>
+                                <td>{app.treatment}</td>
+                                <td>{app.appointmentDate}</td>
+                                <td>{app.period}</td>
+                            </tr>)
+                        }
                     </tbody>
                 </table>
             </div>
