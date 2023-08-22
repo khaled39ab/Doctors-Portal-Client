@@ -7,7 +7,7 @@ import authBg from '../../../assets/images/backgroundAuth.jpg';
 const SignUp = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { createUser } = useContext(AuthContext);
+    const { createUser, addUserName } = useContext(AuthContext);
     const [signUpError, setSignUpError] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
@@ -17,6 +17,11 @@ const SignUp = () => {
         setSignUpError('')
         createUser(data.email, data.password)
             .then(res => {
+                addUserName(data.name)
+                .then(()=>{
+
+                })
+                .catch((err)=>{console.log(err);})
                 // const user = res.user;
                 // console.log(user);
                 navigate(from, { replace: true });
