@@ -8,11 +8,34 @@ const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    const [token, setToken] = useState('');
     const [isLoading, setIsLoading] = useState(true);
     const googleProvider = new GoogleAuthProvider();
 
 
-  
+    const useToken = user => {
+
+        useEffect(() => {
+            const email = user?.email;
+            const currentUser = { email: email }
+
+            if (email) {
+                fetch(`http://localhost:4000/user/${email}`, {
+                    method: 'PUT',
+                    headers: {
+                        'content-type': 'Application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                    })
+            }
+        }, [user]);
+
+        return { token };
+    };
 
 
     const createUser = (email, password) => {
@@ -59,6 +82,7 @@ const AuthProvider = ({ children }) => {
         logOut,
         user,
         isLoading,
+        useToken
     };
 
 
