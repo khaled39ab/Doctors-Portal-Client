@@ -30,6 +30,9 @@ const AuthProvider = ({ children }) => {
                     .then(res => res.json())
                     .then(data => {
                         console.log(data);
+                        const accessToken = data.accessToken;
+
+                        setToken(accessToken)
                     })
             }
         }, [user]);
