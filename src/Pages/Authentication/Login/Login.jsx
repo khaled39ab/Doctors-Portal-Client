@@ -3,11 +3,12 @@ import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 import authBg from '../../../assets/images/backgroundAuth.jpg';
+import GoogleLogin from '../SocialLogin/GoogleLogin';
 
 const Login = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { loginUser, googleLogin } = useContext(AuthContext);
+    const { loginUser } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
@@ -26,17 +27,6 @@ const Login = () => {
                 setLoginError(err.message);
             })
     };
-
-    const handleGoogleLogin = () => {
-        googleLogin()
-            .then(res => {
-                // console.log(res.user)
-                navigate(from, { replace: true })
-            })
-            .catch(err => {
-                setLoginError(err.message)
-            })
-    }
 
 
     return (
@@ -89,8 +79,7 @@ const Login = () => {
                 <p className='text-base mt-3 text-center'>New to Doctors Portal? <Link className='text-secondary' to={'/signUp'}>Create new account</Link> </p>
 
                 <div>
-                    <div className="divider">OR</div>
-                    <button onClick={handleGoogleLogin} className='btn btn-outline w-full'>Continue With Google</button>
+                    <GoogleLogin />
                 </div>
             </div>
         </div>

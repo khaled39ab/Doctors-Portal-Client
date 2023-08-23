@@ -3,33 +3,36 @@ import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 import authBg from '../../../assets/images/backgroundAuth.jpg';
+import GoogleLogin from '../SocialLogin/GoogleLogin';
 
 const SignUp = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { createUser, addUserName } = useContext(AuthContext);
+    const { createUser, addUserName, user, useToken } = useContext(AuthContext);
     const [signUpError, setSignUpError] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
+
+    const token = useToken(user);
 
     const handleSignUp = data => {
         setSignUpError('')
         createUser(data.email, data.password)
             .then(res => {
                 addUserName(data.name)
-                .then(()=>{
+                    .then(() => {
 
-                })
-                .catch((err)=>{console.log(err);})
+                    })
+                    .catch((err) => { console.log(err); })
                 // const user = res.user;
                 // console.log(user);
-                navigate(from, { replace: true });
+                // navigate(from, { replace: true });
             })
             .catch(err => {
                 setSignUpError(err.message)
             })
-    }
+    };
 
 
     return (
@@ -94,8 +97,7 @@ const SignUp = () => {
                 <p className='text-base mt-3 text-center'>Already Have an account? <Link className='text-secondary' to={'/login'}>Login</Link> </p>
 
                 <div>
-                    <div className="divider">OR</div>
-                    <button className='btn btn-outline w-full'>Continue With Google</button>
+                    <GoogleLogin />
                 </div>
             </div>
         </div>
