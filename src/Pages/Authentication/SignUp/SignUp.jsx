@@ -27,7 +27,9 @@ const SignUp = () => {
                     .catch((err) => { console.log(err); })
                 // const user = res.user;
                 // console.log(user);
-                // navigate(from, { replace: true });
+                if (token) {
+                    navigate(from, { replace: true });
+                }
             })
             .catch(err => {
                 setSignUpError(err.message)

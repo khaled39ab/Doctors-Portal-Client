@@ -15,7 +15,9 @@ const GoogleLogin = () => {
         googleLogin()
             .then(res => {
                 // console.log(res.user)
-                // navigate(from, { replace: true })
+                if (token) {
+                    navigate(from, { replace: true });
+                }
             })
             .catch(err => {
                 setLoginError(err.message)

@@ -8,20 +8,24 @@ import GoogleLogin from '../SocialLogin/GoogleLogin';
 const Login = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { loginUser } = useContext(AuthContext);
+    const { loginUser, useToken, user } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
 
 
+    const token = useToken(user);
+
     const handleLogin = data => {
         setLoginError('')
         loginUser(data.email, data.password)
             .then(res => {
                 // const user = res.user;
-                // console.log(user);
-                navigate(from, { replace: true });
+                console.log(token);
+                if (token) {
+                    navigate(from, { replace: true });
+                }
             })
             .catch(err => {
                 setLoginError(err.message);
