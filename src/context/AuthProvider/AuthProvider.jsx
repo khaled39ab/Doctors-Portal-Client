@@ -8,37 +8,8 @@ const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    const [token, setToken] = useState('');
     const [isLoading, setIsLoading] = useState(true);
     const googleProvider = new GoogleAuthProvider();
-
-
-    const useToken = user => {
-
-        useEffect(() => {
-            const email = user?.email;
-            const currentUser = { email: email }
-
-            if (email) {
-                fetch(`http://localhost:4000/user/${email}`, {
-                    method: 'PUT',
-                    headers: {
-                        'content-type': 'Application/json'
-                    },
-                    body: JSON.stringify(currentUser)
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        console.log(data.accessToken);
-                        const accessToken = data.accessToken;
-                        localStorage.setItem('accessToken', accessToken)
-                        setToken(accessToken)
-                    })
-            }
-        }, [user]);
-
-        return { token };
-    };
 
 
     const createUser = (email, password) => {
@@ -50,7 +21,7 @@ const AuthProvider = ({ children }) => {
         return updateProfile(auth.currentUser, {
             displayName: userName
         })
-    }
+    };
 
     const loginUser = (email, password) => {
         setIsLoading(true);
@@ -60,11 +31,11 @@ const AuthProvider = ({ children }) => {
     const googleLogin = () => {
         setIsLoading(true);
         return signInWithPopup(auth, googleProvider);
-    }
+    };
 
     const logOut = () => {
         return signOut(auth);
-    }
+    };
 
 
     useEffect(() => {
@@ -74,7 +45,7 @@ const AuthProvider = ({ children }) => {
         });
 
         return () => unsubscribe();
-    }, [])
+    }, []);
 
 
     const authInfo = {
@@ -84,8 +55,7 @@ const AuthProvider = ({ children }) => {
         googleLogin,
         logOut,
         user,
-        isLoading,
-        useToken
+        isLoading
     };
 
 

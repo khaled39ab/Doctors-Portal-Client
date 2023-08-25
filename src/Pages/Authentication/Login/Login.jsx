@@ -4,18 +4,19 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 import authBg from '../../../assets/images/backgroundAuth.jpg';
 import GoogleLogin from '../SocialLogin/GoogleLogin';
+import useToken from '../../../hooks/useToken';
 
 const Login = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { loginUser, useToken, user } = useContext(AuthContext);
+    const { loginUser, user } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
 
 
-    const token = useToken(user);
+    const [token] = useToken(user);
 
     const handleLogin = data => {
         setLoginError('')

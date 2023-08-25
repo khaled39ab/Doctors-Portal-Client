@@ -4,17 +4,19 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 import authBg from '../../../assets/images/backgroundAuth.jpg';
 import GoogleLogin from '../SocialLogin/GoogleLogin';
+import useToken from '../../../hooks/useToken';
+import { toast } from 'react-hot-toast';
 
 const SignUp = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { createUser, addUserName, user, useToken } = useContext(AuthContext);
+    const { createUser, addUserName, user } = useContext(AuthContext);
     const [signUpError, setSignUpError] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
 
-    const token = useToken(user);
+    const [token] = useToken(user);
 
     const handleSignUp = data => {
         setSignUpError('')
@@ -27,6 +29,7 @@ const SignUp = () => {
                     .catch((err) => { console.log(err); })
                 // const user = res.user;
                 // console.log(user);
+                toast.success('User Created Successfully')
                 if (token) {
                     navigate(from, { replace: true });
                 }

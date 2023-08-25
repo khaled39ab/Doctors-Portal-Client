@@ -1,15 +1,16 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 import { useLocation, useNavigate } from 'react-router-dom';
+import useToken from '../../../hooks/useToken';
 
 const GoogleLogin = () => {
-    const { user, googleLogin, useToken } = useContext(AuthContext);
+    const { user, googleLogin } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
 
-    const token = useToken(user);
+    const [token] = useToken(user);
 
     const handleGoogleLogin = () => {
         googleLogin()
