@@ -15,8 +15,8 @@ const SignUp = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
-
-    const [token] = useToken(user);
+    const [createdUser, setCreatedUser] = useState('');
+    const token = useToken(createdUser);
 
     const handleSignUp = data => {
         setSignUpError('')
