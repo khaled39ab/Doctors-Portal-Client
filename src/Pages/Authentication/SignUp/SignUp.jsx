@@ -24,7 +24,7 @@ const SignUp = () => {
             .then(res => {
                 addUserName(data.name)
                     .then(() => {
-
+                        saveUser(data.name, data.email)
                     })
                     .catch((err) => { console.log(err); })
                 // const user = res.user;
@@ -36,6 +36,22 @@ const SignUp = () => {
             })
             .catch(err => {
                 setSignUpError(err.message)
+            })
+    };
+
+    const saveUser = (name, email) => {
+        const user = { name, email }
+
+        fetch(`http://localhost:4000/users`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                setCreatedUser(email)
             })
     };
 

@@ -5,16 +5,9 @@ const useToken = user => {
 
     useEffect(() => {
         const email = user?.email;
-        const currentUser = { email: email }
 
         if (email) {
-            fetch(`http://localhost:4000/user/${email}`, {
-                method: 'PUT',
-                headers: {
-                    'content-type': 'Application/json'
-                },
-                body: JSON.stringify(currentUser)
-            })
+            fetch(`http://localhost:4000/user/${email}`)
                 .then(res => res.json())
                 .then(data => {
                     // console.log(data.accessToken);
