@@ -10,7 +10,7 @@ const GoogleLogin = () => {
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
 
-    const token = useToken(user);
+    const [token] = useToken(user);
 
     const handleGoogleLogin = () => {
         googleLogin()
