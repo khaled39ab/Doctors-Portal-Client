@@ -10,7 +10,7 @@ import { toast } from 'react-hot-toast';
 const SignUp = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { createUser, addUserName, user } = useContext(AuthContext);
+    const { createUser, addUserName } = useContext(AuthContext);
     const [signUpError, setSignUpError] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
@@ -18,6 +18,12 @@ const SignUp = () => {
     const [createdUser, setCreatedUser] = useState('');
     const token = useToken(createdUser);
 
+
+    if (token) {
+        navigate(from, { replace: true });
+    };
+
+    
     const handleSignUp = data => {
         setSignUpError('')
         createUser(data.email, data.password)
@@ -30,9 +36,7 @@ const SignUp = () => {
                 // const user = res.user;
                 // console.log(user);
                 toast.success('User Created Successfully')
-                if (token) {
-                    navigate(from, { replace: true });
-                }
+                
             })
             .catch(err => {
                 setSignUpError(err.message)

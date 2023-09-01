@@ -1,22 +1,24 @@
 import { useEffect, useState } from "react";
 
-const useToken = user => {
+const useToken = userEmail => {
     const [token, setToken] = useState('');
+    console.log(userEmail);
 
     useEffect(() => {
-        const email = user?.email;
+        const email = userEmail?.email;
 
         if (email) {
             fetch(`http://localhost:4000/user/${email}`)
                 .then(res => res.json())
                 .then(data => {
-                    // console.log(data.accessToken);
-                    const token = data.accessToken;
-                    localStorage.setItem('accessToken', token)
-                    setToken(token)
+                    if (data.accessToken) {
+                        const token = data.accessToken;
+                        localStorage.setItem('accessToken', token)
+                        setToken(token)
+                    };
                 })
         }
-    }, [user]);
+    }, [userEmail]);
 
     return { token };
 };
