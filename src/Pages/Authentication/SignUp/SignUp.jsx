@@ -15,13 +15,13 @@ const SignUp = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
-    const [createdUser, setCreatedUser] = useState('');
-    const token = useToken(user);
+    // const [createdUser, setCreatedUser] = useState('');
+    const [token] = useToken(user);
 
 
-    /* if (token) {
+    if (token) {
         navigate(from, { replace: true });
-    }; */
+    };
 
     
     const handleSignUp = data => {
@@ -55,7 +55,7 @@ const SignUp = () => {
         })
             .then(res => res.json())
             .then(data => {
-                setCreatedUser(email)
+                // setCreatedUser(email)
             })
     };
 

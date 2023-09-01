@@ -9,16 +9,15 @@ import useToken from '../../../hooks/useToken';
 const Login = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { loginUser } = useContext(AuthContext);
+    const { loginUser, user } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
-    const [loginUserEmail, setLoginUserEmail] = useState('');
-    const token = useToken(loginUserEmail);
+    // const [loginUserEmail, setLoginUserEmail] = useState('');
+    const [token] = useToken(user);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
 
 
-    // const token = useToken(user);
     if (token) {
         navigate(from, { replace: true });
     }
@@ -29,7 +28,7 @@ const Login = () => {
             .then(res => {
                 const user = res.user;
                 // console.log(token);
-                setLoginUserEmail(user.email)
+                // setLoginUserEmail(user.email)
 
             })
             .catch(err => {
