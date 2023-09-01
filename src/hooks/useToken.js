@@ -1,24 +1,31 @@
 import { useEffect, useState } from "react";
 
-const useToken = userEmail => {
+const useToken = user => {
     const [token, setToken] = useState('');
-    console.log(userEmail);
 
     useEffect(() => {
-        const email = userEmail?.email;
+        const email = user?.email;
+        const currentUser = { email: email }
+        // console.log(user?.email);
 
         if (email) {
-            fetch(`http://localhost:4000/user/${email}`)
+            fetch(`http://localhost:4000/user/${email}`, {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(currentUser)
+            })
                 .then(res => res.json())
                 .then(data => {
-                    if (data.accessToken) {
-                        const token = data.accessToken;
+                    const token = data.token;
+                    if (token) {
                         localStorage.setItem('accessToken', token)
                         setToken(token)
                     };
                 })
         }
-    }, [userEmail]);
+    }, [user]);
 
     return { token };
 };

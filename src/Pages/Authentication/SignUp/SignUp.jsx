@@ -10,18 +10,18 @@ import { toast } from 'react-hot-toast';
 const SignUp = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { createUser, addUserName } = useContext(AuthContext);
+    const { createUser, addUserName, user } = useContext(AuthContext);
     const [signUpError, setSignUpError] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
     const [createdUser, setCreatedUser] = useState('');
-    const token = useToken(createdUser);
+    const token = useToken(user);
 
 
-    if (token) {
+    /* if (token) {
         navigate(from, { replace: true });
-    };
+    }; */
 
     
     const handleSignUp = data => {
