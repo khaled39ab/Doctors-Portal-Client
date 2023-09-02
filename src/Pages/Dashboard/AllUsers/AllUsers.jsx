@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
+import Loading from '../../Shared/Loading/Loading';
 
 const AllUsers = () => {
+    const { isLoading } = useContext(AuthContext);
     const users = useLoaderData();
+
+    if(isLoading){
+        return <Loading />
+    };
+
 
     return (
         <div>
-            <h1 className='text-2xl font-bold text-center mb-5'>Total Users {users.length}</h1>
+            <h1 className='text-3xl font-bold text-center text-lime-700 mb-5'>Total Users {users.length}</h1>
             <div className="overflow-x-auto">
                 <table className="table">
                     <thead>
@@ -14,6 +22,8 @@ const AllUsers = () => {
                             <th></th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Make Admin</th>
+                            <th>Remove Admin</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -22,6 +32,8 @@ const AllUsers = () => {
                                 <th>{index + 1}</th>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
+                                <td><button className="btn btn-outline btn-info btn-sm">Make Admin</button></td>
+                                <td><button className="btn btn-outline btn-error btn-sm">Remove Admin</button></td>
                             </tr>)
                         }
                     </tbody>
