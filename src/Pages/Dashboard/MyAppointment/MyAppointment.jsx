@@ -3,18 +3,32 @@ import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 import Loading from '../../Shared/Loading/Loading';
 
 const MyAppointment = () => {
-    const { user, isLoading } = useContext(AuthContext);
+    const { user, isLoading, logOut } = useContext(AuthContext);
     const [myApp, setMyApp] = useState([]);
 
     useEffect(() => {
         if (isLoading) {
             return <Loading />
         }
-        fetch(`http://localhost:4000/bookings?email=${user.email}`)
-            .then(res => res.json())
-            .then(data => setMyApp(data))
+        fetch(`http://localhost:4000/bookings?email=${user.email}`, {
+            method: 'GET',
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then((res) => {
+                // console.log(res);
+                if(res.status === 401 || res.status === 403){
+                    logOut()
+                    localStorage.removeItem('accessToken')
+                }
+                return res.json()
+            })
+            .then(data => {
+                setMyApp(data)
+            })
 
-    }, [user.email, isLoading]);
+    }, [user.email, isLoading, logOut]);
 
     return (
         <div>
@@ -31,7 +45,7 @@ const MyAppointment = () => {
                     </thead>
                     <tbody>
                         {
-                            myApp.map((app, index) => <tr className="hover">
+                            myApp.map((app, index) => <tr className="hover" key={index}>
                                 <th>{index + 1}</th>
                                 <td>{app.treatment}</td>
                                 <td>{app.appointmentDate}</td>
