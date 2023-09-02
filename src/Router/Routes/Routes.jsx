@@ -10,6 +10,7 @@ import RequireAuth from '../RequireAuth/RequireAuth';
 import Dashboard from '../../Pages/Dashboard/DashboardHome/Dashboard';
 import MyAppointment from '../../Pages/Dashboard/MyAppointment/MyAppointment';
 import MyReview from '../../Pages/Dashboard/MyReview/MyReview';
+import AllUsers from '../../Pages/Dashboard/AllUsers/AllUsers';
 
 const router = createBrowserRouter([
     {
@@ -43,7 +44,12 @@ const router = createBrowserRouter([
                     {
                         path: '/dashboard/:my-review',
                         element: <MyReview />
-                    }
+                    },
+                    {
+                        path: '/dashboard/:users',
+                        element: <AllUsers />,
+                        loader: () => fetch('http://localhost:4000/users')
+                    },
                 ]
             },
             {
