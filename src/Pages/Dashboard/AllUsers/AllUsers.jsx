@@ -2,19 +2,23 @@ import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 import Loading from '../../Shared/Loading/Loading';
-import { useQuery } from 'react-query';
 
 const AllUsers = () => {
     const { isLoading } = useContext(AuthContext);
     const users = useLoaderData();
 
-    if(isLoading){
+    if (isLoading) {
         return <Loading />
     };
 
 
-    const makeAdmin = (email) =>{
-        // const {data} = useQuery('user', ()=>{})
+
+    const makeAdmin = (email) => {
+        fetch(`http://localhost:4000/user/admin/:email=${email}`)
+            .then(res => res.json())
+            .then(data => {
+
+            })
     }
 
 
@@ -38,7 +42,7 @@ const AllUsers = () => {
                                 <th>{index + 1}</th>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
-                                <td><button onClick={()=>makeAdmin(user.email)} className="btn btn-outline btn-info btn-sm">Make Admin</button></td>
+                                <td><button onClick={() => makeAdmin(user.email)} className="btn btn-outline btn-info btn-sm">Make Admin</button></td>
                                 <td><button className="btn btn-outline btn-error btn-sm">Remove Admin</button></td>
                             </tr>)
                         }

@@ -6,7 +6,7 @@ const useToken = user => {
     useEffect(() => {
         const email = user?.email;
         const currentUser = { email: email }
-        // console.log(user?.email);
+        
 
         if (email) {
             fetch(`http://localhost:4000/user/${email}`, {
@@ -18,6 +18,7 @@ const useToken = user => {
             })
                 .then(res => res.json())
                 .then(data => {
+                    // console.log(data);
                     const token = data.token;
                     if (token) {
                         localStorage.setItem('accessToken', token)

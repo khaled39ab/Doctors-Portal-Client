@@ -26,8 +26,7 @@ const Login = () => {
         setLoginError('')
         loginUser(data.email, data.password)
             .then(res => {
-                // const user = res.user;
-                // console.log(token);
+                // const user = res.user
                 // setLoginUserEmail(user.email)
 
             })
