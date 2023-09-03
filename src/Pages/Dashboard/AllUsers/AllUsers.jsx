@@ -2,15 +2,23 @@ import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 import Loading from '../../Shared/Loading/Loading';
+import { toast } from 'react-hot-toast';
+import { useQuery } from 'react-query';
 
 const AllUsers = () => {
     const { isLoading } = useContext(AuthContext);
     const users = useLoaderData();
+    const { refetch } = useQuery({
+        queryFn: async ()=>{
+            const res = await fetch(`http://localhost:4000/user/admin/:email`)
+            const data = await res.json()
+            return data;
+        }
+    });
 
     if (isLoading) {
         return <Loading />
     };
-
 
 
     const makeAdmin = (email) => {
@@ -23,6 +31,8 @@ const AllUsers = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
+                refetch();
+                toast.success("Successfully made an admin")
             })
     }
 
@@ -47,7 +57,7 @@ const AllUsers = () => {
                                 <th>{index + 1}</th>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
-                                <td><button onClick={() => makeAdmin(user.email)} className="btn btn-outline btn-info btn-sm">Make Admin</button></td>
+                                <td>{user.role !== 'admin' && <button onClick={() => makeAdmin(user.email)} className="btn btn-outline btn-info btn-sm">Make Admin</button>}</td>
                                 <td><button className="btn btn-outline btn-error btn-sm">Remove Admin</button></td>
                             </tr>)
                         }
