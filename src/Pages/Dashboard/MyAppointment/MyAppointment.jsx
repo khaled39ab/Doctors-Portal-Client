@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 import Loading from '../../Shared/Loading/Loading';
+import { useNavigate } from 'react-router-dom';
 
 const MyAppointment = () => {
     const { user, isLoading, logOut } = useContext(AuthContext);
     const [myApp, setMyApp] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (isLoading) {
@@ -20,6 +22,7 @@ const MyAppointment = () => {
                 if(res.status === 401 || res.status === 403){
                     logOut()
                     localStorage.removeItem('accessToken')
+                    navigate('/')
                 }
                 return res.json()
             })
@@ -27,7 +30,7 @@ const MyAppointment = () => {
                 setMyApp(data)
             })
 
-    }, [user.email, isLoading, logOut]);
+    }, [user.email, isLoading, logOut, navigate]);
 
     return (
         <div>

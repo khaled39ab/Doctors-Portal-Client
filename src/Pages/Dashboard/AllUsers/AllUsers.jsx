@@ -14,10 +14,15 @@ const AllUsers = () => {
 
 
     const makeAdmin = (email) => {
-        fetch(`http://localhost:4000/user/admin/:email=${email}`)
+        fetch(`http://localhost:4000/user/admin/${email}`, {
+            method: 'PUT',
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
             .then(res => res.json())
             .then(data => {
-
+                console.log(data);
             })
     }
 
