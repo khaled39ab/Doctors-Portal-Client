@@ -1,20 +1,13 @@
 import React, { useContext } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 import Loading from '../../Shared/Loading/Loading';
 import { toast } from 'react-hot-toast';
-import { useQuery } from 'react-query';
 
 const AllUsers = () => {
     const { isLoading } = useContext(AuthContext);
     const users = useLoaderData();
-    const { refetch } = useQuery({
-        queryFn: async ()=>{
-            const res = await fetch(`http://localhost:4000/user/admin/:email`)
-            const data = await res.json()
-            return data;
-        }
-    });
+    const navigate = useNavigate();
 
     if (isLoading) {
         return <Loading />
@@ -30,8 +23,8 @@ const AllUsers = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
-                refetch();
+                // console.log(data);
+                navigate('/')
                 toast.success("Successfully made an admin")
             })
     }

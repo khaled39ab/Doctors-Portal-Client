@@ -11,6 +11,7 @@ import Dashboard from '../../Pages/Dashboard/DashboardHome/Dashboard';
 import MyAppointment from '../../Pages/Dashboard/MyAppointment/MyAppointment';
 import MyReview from '../../Pages/Dashboard/MyReview/MyReview';
 import AllUsers from '../../Pages/Dashboard/AllUsers/AllUsers';
+import { useQuery } from 'react-query';
 
 const router = createBrowserRouter([
     {
@@ -48,12 +49,12 @@ const router = createBrowserRouter([
                     {
                         path: '/dashboard/:users',
                         element: <AllUsers />,
-                        loader: () => fetch('http://localhost:4000/users',{
-                            method:'GET',
+                        loader: () => fetch('http://localhost:4000/users', {
+                            method: 'GET',
                             headers: {
                                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
                             }
-                        })
+                        })   
                     },
                 ]
             },
