@@ -21,11 +21,18 @@ const AllUsers = () => {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
             }
         })
-            .then(res => res.json())
+            .then(res => {
+                if (res.status === 403) {
+                    toast.error("You an not make an admin")
+                }
+                return res.json();
+            })
             .then(data => {
                 // console.log(data);
-                navigate('/')
-                toast.success("Successfully made an admin")
+                if (data.modifiedCount > 0) {
+                    navigate('/')
+                    toast.success("Successfully made an admin")
+                }
             })
     }
 
