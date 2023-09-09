@@ -1,9 +1,13 @@
 import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
+import useAdmin from '../../../hooks/useAdmin';
 
 const Dashboard = () => {
     const { user } = useContext(AuthContext);
+    const [admin] = useAdmin(user);
+
+
     return (
         <div className="drawer drawer-mobile">
             <input id="dashboard-sidebar" type="checkbox" className="drawer-toggle" />
@@ -24,16 +28,15 @@ const Dashboard = () => {
                     </div>
                 </div>
 
-
-
-
             </div>
+
             <div className="drawer-side">
                 <label htmlFor="dashboard-sidebar" className="drawer-overlay"></label>
                 <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
                     <li><Link to='/dashboard/my-appointment'>My Appointment</Link></li>
                     <li><Link to='/dashboard/my-review'>My Review</Link></li>
-                    <li><Link to='/dashboard/users'>All Users</Link></li>
+                    {/* <li><Link to='/dashboard/users'>All Users</Link></li> */}
+                    {admin && <li><Link to='/dashboard/users'>All Users</Link></li>}
                 </ul>
 
             </div>
