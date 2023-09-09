@@ -11,7 +11,6 @@ import Dashboard from '../../Pages/Dashboard/DashboardHome/Dashboard';
 import MyAppointment from '../../Pages/Dashboard/MyAppointment/MyAppointment';
 import MyReview from '../../Pages/Dashboard/MyReview/MyReview';
 import AllUsers from '../../Pages/Dashboard/AllUsers/AllUsers';
-import { useQuery } from 'react-query';
 
 const router = createBrowserRouter([
     {
