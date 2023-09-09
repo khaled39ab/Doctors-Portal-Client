@@ -11,6 +11,7 @@ import Dashboard from '../../Pages/Dashboard/DashboardHome/Dashboard';
 import MyAppointment from '../../Pages/Dashboard/MyAppointment/MyAppointment';
 import MyReview from '../../Pages/Dashboard/MyReview/MyReview';
 import AllUsers from '../../Pages/Dashboard/AllUsers/AllUsers';
+import RequireAdmin from '../RequireAdmin/RequireAdmin';
 
 const router = createBrowserRouter([
     {
@@ -48,12 +49,13 @@ const router = createBrowserRouter([
                     {
                         path: '/dashboard/:users',
                         element: <AllUsers />,
+                        // element: <RequireAdmin><AllUsers /></RequireAdmin>,
                         loader: () => fetch('http://localhost:4000/users', {
                             method: 'GET',
                             headers: {
                                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
                             }
-                        })   
+                        })
                     },
                 ]
             },
