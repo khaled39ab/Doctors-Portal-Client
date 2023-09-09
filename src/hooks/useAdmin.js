@@ -1,4 +1,4 @@
-/* import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const useAdmin = user => {
     const [admin, setAdmin] = useState(false);
@@ -26,4 +26,4 @@ const useAdmin = user => {
     return [admin, adminLoading]
 };
 
-export default useAdmin; */
+export default useAdmin;
