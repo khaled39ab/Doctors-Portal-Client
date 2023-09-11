@@ -48,7 +48,6 @@ const router = createBrowserRouter([
                     },
                     {
                         path: '/dashboard/:users',
-                        // element: <AllUsers />,
                         element: <RequireAdmin><AllUsers /></RequireAdmin>,
                         loader: () => fetch('http://localhost:4000/users', {
                             method: 'GET',
