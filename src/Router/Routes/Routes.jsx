@@ -12,6 +12,7 @@ import MyAppointment from '../../Pages/Dashboard/MyAppointment/MyAppointment';
 import MyReview from '../../Pages/Dashboard/MyReview/MyReview';
 import AllUsers from '../../Pages/Dashboard/AllUsers/AllUsers';
 import RequireAdmin from '../RequireAdmin/RequireAdmin';
+import AddDoctor from '../../Pages/Dashboard/AddDoctor/AddDoctor';
 
 const router = createBrowserRouter([
     {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
                                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
                             }
                         })
+                    },
+                    {
+                        path: '/dashboard/add-doctor',
+                        element: <RequireAdmin><AddDoctor /></RequireAdmin>
                     },
                 ]
             },
