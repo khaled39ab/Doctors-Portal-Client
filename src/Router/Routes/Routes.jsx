@@ -59,7 +59,8 @@ const router = createBrowserRouter([
                     },
                     {
                         path: '/dashboard/add-doctor',
-                        element: <RequireAdmin><AddDoctor /></RequireAdmin>
+                        element: <RequireAdmin><AddDoctor /></RequireAdmin>,
+                        loader: () => fetch('http://localhost:4000/specialty')
                     },
                 ]
             },
