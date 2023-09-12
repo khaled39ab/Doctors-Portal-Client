@@ -66,7 +66,12 @@ const router = createBrowserRouter([
                     {
                         path: '/dashboard/manage-doctors',
                         element: <RequireAdmin><ManageDoctors /></RequireAdmin>,
-                        loader: () => fetch('http://localhost:4000/doctors')
+                        loader: () => fetch('http://localhost:4000/doctors', {
+                            method: 'GET',
+                            headers: {
+                                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                            }
+                        })
                     },
                 ]
             },
