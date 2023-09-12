@@ -30,7 +30,7 @@ const Dashboard = () => {
 
             </div>
 
-            <div className="drawer-side">
+            <div className="drawer-side mt-20">
                 <label htmlFor="dashboard-sidebar" className="drawer-overlay"></label>
                 <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
                     <li><Link to='/dashboard/my-appointment'>My Appointment</Link></li>
@@ -38,6 +38,7 @@ const Dashboard = () => {
                     {admin && <>
                         <li><Link to='/dashboard/users'>All Users</Link></li>
                         <li><Link to='/dashboard/add-doctor'>Add A Doctor</Link></li>
+                        <li><Link to='/dashboard/manage-doctors'>Manage Doctors</Link></li>
                     </>}
                 </ul>
             </div>

@@ -13,6 +13,7 @@ import MyReview from '../../Pages/Dashboard/MyReview/MyReview';
 import AllUsers from '../../Pages/Dashboard/AllUsers/AllUsers';
 import RequireAdmin from '../RequireAdmin/RequireAdmin';
 import AddDoctor from '../../Pages/Dashboard/AddDoctor/AddDoctor';
+import ManageDoctors from '../../Pages/Dashboard/ManageDoctors/ManageDoctors';
 
 const router = createBrowserRouter([
     {
@@ -61,6 +62,11 @@ const router = createBrowserRouter([
                         path: '/dashboard/add-doctor',
                         element: <RequireAdmin><AddDoctor /></RequireAdmin>,
                         loader: () => fetch('http://localhost:4000/specialty')
+                    },
+                    {
+                        path: '/dashboard/manage-doctors',
+                        element: <RequireAdmin><ManageDoctors /></RequireAdmin>,
+                        loader: () => fetch('http://localhost:4000/doctors')
                     },
                 ]
             },

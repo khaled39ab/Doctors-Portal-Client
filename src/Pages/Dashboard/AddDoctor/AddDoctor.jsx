@@ -66,7 +66,7 @@ const AddDoctor = () => {
                     </label>
                     <input
                         type="file"
-                        {...register("image", { required: "Email Address is required" })}
+                        {...register("image", { required: "Image is required" })}
                         className="input input-bordered w-full"
                     />
                     {
