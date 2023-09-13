@@ -6,6 +6,8 @@ const AddDoctor = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const specialty = useLoaderData();
 
+    const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_imageStorageAPI}`;
+
     const handleSignUp = data => {
         console.log('data', data);
     };
@@ -50,7 +52,7 @@ const AddDoctor = () => {
                     </label>
                     <select
                         {...register("specialty", { required: "Specialty is required" })}
-                        className="select select-primary w-full max-w-xs"
+                        className="select input-bordered w-full max-w-xs"
                     >
                         {
                             specialty.map(special => <option
