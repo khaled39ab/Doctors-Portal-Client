@@ -6,11 +6,31 @@ const AddDoctor = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const specialty = useLoaderData();
 
-    const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_imageStorageAPI}`;
+    const doctorURl = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_imageStorageAPI}`;
 
-    const handleSignUp = data => {
-        console.log('data', data);
+    const handleSignUp = async data => {
+        const image = data.image[0];
+        const formData = new FormData();
+        formData.append("image", image);
+
+        fetch(doctorURl, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(result => {
+                if (result.success) {
+                    const img = result.data.url;
+                    const doctor = {
+                        name: data.name,
+                        email: data.email,
+                        specialty: data.specialty,
+                        img: img
+                    }
+                }
+            })
     };
+
 
     return (
         <div>
