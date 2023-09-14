@@ -28,6 +28,7 @@ const AddDoctor = () => {
                         specialty: data.specialty,
                         img: img
                     }
+                    
                     fetch('http://localhost:4000/doctors', {
                         method: 'POST',
                         headers: {
