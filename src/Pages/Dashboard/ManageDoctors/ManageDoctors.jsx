@@ -5,7 +5,7 @@ import DoctorRow from './DoctorRow/DoctorRow';
 
 const ManageDoctors = () => {
 
-    const { data: doctors, isLoading } = useQuery('doctors', () => fetch('http://localhost:4000/doctors', {
+    const { data: doctors, isLoading, refetch } = useQuery('doctors', () => fetch('http://localhost:4000/doctors', {
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
         }
@@ -17,7 +17,7 @@ const ManageDoctors = () => {
 
     return (
         <div>
-            <h1 className='text-3xl font-extrabold mb-5'>Manage Doctors {doctors.length}</h1>
+            <h1 className='text-3xl font-extrabold mb-5'>Manage Doctors</h1>
 
             <div className="overflow-x-auto">
                 <table className="table">
@@ -36,6 +36,7 @@ const ManageDoctors = () => {
                                 key={doctor._id}
                                 doctor={doctor}
                                 index={index}
+                                refetch={refetch}
                             ></DoctorRow>)
                         }
 

@@ -1,7 +1,25 @@
 import React from 'react';
+import toast from 'react-hot-toast';
 
-const DoctorRow = ({ doctor, index }) => {
+const DoctorRow = ({ doctor, index, refetch }) => {
     const { name, email, specialty, img } = doctor;
+
+    const handleDelete = email => {
+        fetch(`http://localhost:4000/doctors/${email}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if(data.deletedCount){
+                    toast.success(`Doctor ${name} is deleted`)
+                }
+                refetch();
+            })
+    };
+
 
     return (
         <tr>
@@ -21,7 +39,7 @@ const DoctorRow = ({ doctor, index }) => {
             <td>{email}</td>
             <td>{specialty}</td>
             <th>
-                <button className="btn btn-sm btn-outline btn-error">Remove</button>
+                <button onClick={() => handleDelete(email)} className="btn btn-sm btn-outline btn-error">Delete</button>
             </th>
         </tr>
     );
