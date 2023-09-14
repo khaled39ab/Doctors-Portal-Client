@@ -1,9 +1,10 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { useLoaderData } from 'react-router-dom';
 
 const AddDoctor = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const specialty = useLoaderData();
 
     const doctorURl = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_imageStorageAPI}`;
@@ -27,7 +28,8 @@ const AddDoctor = () => {
                         specialty: data.specialty,
                         img: img
                     }
-
+                    // console.log(doctor);
+                    // console.log(JSON.stringify(doctor));
                     fetch('http://localhost:4000/doctors', {
                         method: 'POST',
                         'content-type': 'application/json',
@@ -37,8 +39,15 @@ const AddDoctor = () => {
                         body: JSON.stringify(doctor)
                     })
                         .then(res => res.json())
-                        .then( inserted => {
-                            console.log(inserted);
+                        .then(inserted => {
+                            // console.log(inserted);
+                            if (inserted.acknowledged) {
+                                toast.success('Successfully add a doctor')
+                                reset();
+                            }
+                            else {
+                                toast.error('Failed to add the Doctor')
+                            }
                         })
                 }
             })
