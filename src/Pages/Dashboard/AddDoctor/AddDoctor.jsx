@@ -28,19 +28,16 @@ const AddDoctor = () => {
                         specialty: data.specialty,
                         img: img
                     }
-                    // console.log(doctor);
-                    // console.log(JSON.stringify(doctor));
                     fetch('http://localhost:4000/doctors', {
                         method: 'POST',
-                        'content-type': 'application/json',
                         headers: {
+                            'content-type': 'application/json',
                             authorization: `Bearer ${localStorage.getItem('accessToken')}`
                         },
                         body: JSON.stringify(doctor)
                     })
                         .then(res => res.json())
                         .then(inserted => {
-                            // console.log(inserted);
                             if (inserted.acknowledged) {
                                 toast.success('Successfully add a doctor')
                                 reset();
