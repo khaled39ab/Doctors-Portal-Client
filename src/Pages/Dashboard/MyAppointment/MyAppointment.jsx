@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 import Loading from '../../Shared/Loading/Loading';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const MyAppointment = () => {
     const { user, isLoading, logOut } = useContext(AuthContext);
@@ -19,7 +19,7 @@ const MyAppointment = () => {
             }
         })
             .then((res) => {
-                if(res.status === 401 || res.status === 403){
+                if (res.status === 401 || res.status === 403) {
                     logOut()
                     localStorage.removeItem('accessToken')
                     navigate('/')
@@ -43,6 +43,7 @@ const MyAppointment = () => {
                             <th>Treatment</th>
                             <th>Date</th>
                             <th>Time</th>
+                            <th>Payment</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,6 +53,9 @@ const MyAppointment = () => {
                                 <td>{app.treatment}</td>
                                 <td>{app.appointmentDate}</td>
                                 <td>{app.period}</td>
+                                <td>
+                                    {app.paid ? <span className='text-success text-xl font-semibold'>Paid</span> : <Link to={`/dashboard/payment/:${app._id}`} className='btn btn-info btn-sm text-white'>Pay Now</Link>}
+                                </td>
                             </tr>)
                         }
                     </tbody>
