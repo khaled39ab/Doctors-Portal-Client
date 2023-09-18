@@ -2,7 +2,7 @@ import React from 'react';
 
 const AvailableOption = ({ availableTime, setTreatment }) => {
 
-    const { name, slots } = availableTime;
+    const { name, slots, price } = availableTime;
 
     return (
         <div className="card mx-10 shadow-xl cursor-pointer">
@@ -10,6 +10,7 @@ const AvailableOption = ({ availableTime, setTreatment }) => {
                 <h2 className="card-title text-secondary ">{name}</h2>
                 <p>{slots.length > 0 ? slots[0] : "Try Another Day"}</p>
                 <p>{slots.length} {slots.length > 1 ? 'spaces' : 'space'} Available.</p>
+                <p className='text-red-400 font-bold'>Price: ${price}</p>
                 <div className="card-actions mt-4">
                     <label
                         disabled={slots.length === 0}

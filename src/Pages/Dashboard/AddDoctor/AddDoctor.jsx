@@ -28,7 +28,7 @@ const AddDoctor = () => {
                         specialty: data.specialty,
                         img: img
                     }
-                    
+
                     fetch('http://localhost:4000/doctors', {
                         method: 'POST',
                         headers: {
@@ -109,7 +109,7 @@ const AddDoctor = () => {
                     <input
                         type="file"
                         {...register("image", { required: "Image is required" })}
-                        className="input input-bordered w-full"
+                        className="file-input file-input-bordered w-full max-w-xs"
                     />
                     {
                         errors.image && <p className='text-red-600'>{errors.image?.message}</p>
