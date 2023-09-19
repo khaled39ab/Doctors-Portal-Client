@@ -19,18 +19,19 @@ const Payment = () => {
     }
 
     return (
-        <div>
-            <h1 className="text-3xl font-bold py-8 text-green-800 uppercase">Payment for {booking.treatment}</h1>
-            <div className="card  bg-base-100 shadow-xl">
-                <figure className="px-10 pt-10">
-                    
-                </figure>
-                <div className="card-body items-center text-center">
-                    <h2 className="card-title">{booking.treatment}</h2>
-                    <p className='font-bold'>Your appointment in <span className='text-orange-500'>{booking.appointmentDate}</span> on <span className='text-orange-500'>{booking.period}</span></p>
-                    <div className="card-actions">
-                        <button className="btn btn-primary">Pay Now</button>
-                    </div>
+
+        <div className="card  bg-base-100 shadow-xl">
+
+            <div className="card-body ">
+                <h1 className="text-2xl font-bold card-title">Payment for: <span className='text-pink-600'>{booking.treatment}</span></h1>
+                <p className='font-bold'>Your appointment on <span className='text-orange-500'>{booking.appointmentDate}</span> at <span className='text-orange-500'>{booking.period}</span></p>
+                <p className='font-bold text-xl text-green-400'>Please Pay: ${booking.price}</p>
+
+
+            </div>
+            <div className="px-10 pt-10">
+                <div className="card-actions my-3">
+                    <button className="btn btn-primary">Pay Now</button>
                 </div>
             </div>
         </div>
