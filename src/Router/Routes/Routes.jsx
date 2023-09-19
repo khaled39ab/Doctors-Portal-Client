@@ -14,6 +14,7 @@ import AllUsers from '../../Pages/Dashboard/AllUsers/AllUsers';
 import RequireAdmin from '../RequireAdmin/RequireAdmin';
 import AddDoctor from '../../Pages/Dashboard/AddDoctor/AddDoctor';
 import ManageDoctors from '../../Pages/Dashboard/ManageDoctors/ManageDoctors';
+import Payment from '../../Pages/Dashboard/Payment/Payment';
 
 const router = createBrowserRouter([
     {
@@ -41,15 +42,19 @@ const router = createBrowserRouter([
                 element: <RequireAuth><Dashboard /></RequireAuth>,
                 children: [
                     {
-                        path: '/dashboard/:my-appointment',
+                        path: '/my-appointment',
                         element: <MyAppointment />,
                     },
                     {
-                        path: '/dashboard/:my-review',
+                        path: '/my-review',
                         element: <MyReview />
                     },
                     {
-                        path: '/dashboard/:users',
+                        path: '/payment/:id',
+                        element: <Payment />
+                    },
+                    {
+                        path: '/users',
                         element: <RequireAdmin><AllUsers /></RequireAdmin>,
                         loader: () => fetch('http://localhost:4000/users', {
                             method: 'GET',
@@ -59,12 +64,12 @@ const router = createBrowserRouter([
                         })
                     },
                     {
-                        path: '/dashboard/add-doctor',
+                        path: '/add-doctor',
                         element: <RequireAdmin><AddDoctor /></RequireAdmin>,
                         loader: () => fetch('http://localhost:4000/specialty')
                     },
                     {
-                        path: '/dashboard/manage-doctors',
+                        path: '/manage-doctors',
                         element: <RequireAdmin><ManageDoctors /></RequireAdmin>,
                         loader: () => fetch('http://localhost:4000/doctors', {
                             method: 'GET',
