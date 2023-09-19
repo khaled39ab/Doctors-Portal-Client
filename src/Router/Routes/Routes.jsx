@@ -42,19 +42,19 @@ const router = createBrowserRouter([
                 element: <RequireAuth><Dashboard /></RequireAuth>,
                 children: [
                     {
-                        path: '/my-appointment',
+                        path: '/dashboard/my-appointment',
                         element: <MyAppointment />,
                     },
                     {
-                        path: '/my-review',
+                        path: '/dashboard/my-review',
                         element: <MyReview />
                     },
                     {
-                        path: '/payment/:id',
+                        path: '/dashboard/payment/:id',
                         element: <Payment />
                     },
                     {
-                        path: '/users',
+                        path: '/dashboard/users',
                         element: <RequireAdmin><AllUsers /></RequireAdmin>,
                         loader: () => fetch('http://localhost:4000/users', {
                             method: 'GET',
@@ -64,12 +64,12 @@ const router = createBrowserRouter([
                         })
                     },
                     {
-                        path: '/add-doctor',
+                        path: '/dashboard/add-doctor',
                         element: <RequireAdmin><AddDoctor /></RequireAdmin>,
                         loader: () => fetch('http://localhost:4000/specialty')
                     },
                     {
-                        path: '/manage-doctors',
+                        path: '/dashboard/manage-doctors',
                         element: <RequireAdmin><ManageDoctors /></RequireAdmin>,
                         loader: () => fetch('http://localhost:4000/doctors', {
                             method: 'GET',
