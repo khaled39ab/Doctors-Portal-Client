@@ -54,7 +54,14 @@ const MyAppointment = () => {
                                 <td>{app.appointmentDate}</td>
                                 <td>{app.period}</td>
                                 <td>
-                                    {app.paid ? <span className='text-success text-xl font-semibold'>Paid</span> : <Link to={`/dashboard/payment/${app._id}`} className='btn btn-info btn-sm text-white'>Pay Now</Link>}
+                                    {
+                                        app.paid ?
+                                            <div className='text-success text-xl font-semibold'>Paid
+                                                <br />
+                                                <span className="badge badge-ghost badge-sm">Transaction Id: {app.transactionId}</span>
+                                            </div> :
+                                            <Link to={`/dashboard/payment/${app._id}`} className='btn btn-info btn-sm text-white'>Pay Now</Link>
+                                    }
                                 </td>
                             </tr>)
                         }
