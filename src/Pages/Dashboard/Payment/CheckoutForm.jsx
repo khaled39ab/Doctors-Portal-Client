@@ -5,9 +5,10 @@ const CheckoutForm = ({ booking }) => {
     const stripe = useStripe();
     const elements = useElements();
     const [cardError, setCardError] = useState('');
+    const [success, setSuccess] = useState('');
     const [clientSecret, setClientSecret] = useState("");
 
-    const { price } = booking;
+    const { price, patientName, email, phone, treatment } = booking;
 
     useEffect(() => {
         fetch('http://localhost:4000/create-payment-intent', {
@@ -16,12 +17,12 @@ const CheckoutForm = ({ booking }) => {
                 'content-type': 'application/json',
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
             },
-            body: JSON.stringify({price})
+            body: JSON.stringify({ price })
         })
             .then(res => res.json())
-            .then(data =>{
-                console.log(data);
-                if(data?.clientSecret){
+            .then(data => {
+                // console.log(data);
+                if (data?.clientSecret) {
                     setClientSecret(data.clientSecret)
                 }
             })
@@ -52,6 +53,31 @@ const CheckoutForm = ({ booking }) => {
         } else {
             console.log('[PaymentMethod]', paymentMethod);
             setCardError('')
+        };
+        setSuccess('');
+
+
+        //confirm payment
+        const { paymentIntent, intentError } = await stripe.confirmCardPayment(
+            clientSecret,
+            {
+                payment_method: {
+                    card: card,
+                    billing_details: {
+                        name: patientName,
+                        email: email
+                    },
+                },
+            },
+        );
+
+        if (intentError){
+            setCardError(intentError?.message)
+        }
+        else{
+            setCardError('')
+            console.log(paymentIntent);
+            setSuccess('Congrats! Your payment is successfully done.')
         }
 
     }
@@ -84,6 +110,9 @@ const CheckoutForm = ({ booking }) => {
 
             {
                 cardError && <p className='text-error'>{cardError}</p>
+            }
+            {
+                success && <p className='text-success'>{success}</p>
             }
         </div>
     );
