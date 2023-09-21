@@ -12,7 +12,7 @@ const MyAppointment = () => {
         if (isLoading) {
             return <Loading />
         }
-        fetch(`http://localhost:4000/bookings?email=${user.email}`, {
+        fetch(`https://doctors-portal-server-two-eta.vercel.app/bookings?email=${user.email}`, {
             method: 'GET',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -56,9 +56,9 @@ const MyAppointment = () => {
                                 <td>
                                     {
                                         app.paid ?
-                                            <div className='text-success text-xl font-semibold'>Paid
+                                            <div className='text-success text-xl font-semibold'>Paid <span className='text-xs text-yellow-500'>Transaction Id is- </span>
                                                 <br />
-                                                <span className="badge badge-ghost badge-sm">Transaction Id: {app.transactionId}</span>
+                                                <span className="badge badge-ghost badge-sm "> {app.transactionId}</span>
                                             </div> :
                                             <Link to={`/dashboard/payment/${app._id}`} className='btn btn-info btn-sm text-white'>Pay Now</Link>
                                     }

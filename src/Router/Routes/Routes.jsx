@@ -15,6 +15,7 @@ import RequireAdmin from '../RequireAdmin/RequireAdmin';
 import AddDoctor from '../../Pages/Dashboard/AddDoctor/AddDoctor';
 import ManageDoctors from '../../Pages/Dashboard/ManageDoctors/ManageDoctors';
 import Payment from '../../Pages/Dashboard/Payment/Payment';
+import AllPayment from '../../Pages/Dashboard/AllPayment/AllPayment';
 
 const router = createBrowserRouter([
     {
@@ -56,7 +57,7 @@ const router = createBrowserRouter([
                     {
                         path: '/dashboard/users',
                         element: <RequireAdmin><AllUsers /></RequireAdmin>,
-                        loader: () => fetch('http://localhost:4000/users', {
+                        loader: () => fetch('https://doctors-portal-server-two-eta.vercel.app/users', {
                             method: 'GET',
                             headers: {
                                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -66,17 +67,21 @@ const router = createBrowserRouter([
                     {
                         path: '/dashboard/add-doctor',
                         element: <RequireAdmin><AddDoctor /></RequireAdmin>,
-                        loader: () => fetch('http://localhost:4000/specialty')
+                        loader: () => fetch('https://doctors-portal-server-two-eta.vercel.app/specialty')
                     },
                     {
                         path: '/dashboard/manage-doctors',
                         element: <RequireAdmin><ManageDoctors /></RequireAdmin>,
-                        loader: () => fetch('http://localhost:4000/doctors', {
+                        loader: () => fetch('https://doctors-portal-server-two-eta.vercel.app/doctors', {
                             method: 'GET',
                             headers: {
                                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
                             }
                         })
+                    },
+                    {
+                        path: '/dashboard/all-payment',
+                        element: <RequireAdmin><AllPayment /></RequireAdmin>
                     },
                 ]
             },
