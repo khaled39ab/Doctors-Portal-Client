@@ -15,7 +15,7 @@ const AllUsers = () => {
 
 
     const makeAdmin = (email) => {
-        fetch(`https://doctors-portal-server-two-eta.vercel.app/user/admin/${email}`, {
+        fetch(`http://localhost:4000/user/admin/${email}`, {
             method: 'PUT',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`

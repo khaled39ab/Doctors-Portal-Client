@@ -9,7 +9,7 @@ const useToken = user => {
         
 
         if (email) {
-            fetch(`https://doctors-portal-server-two-eta.vercel.app/user/${email}`, {
+            fetch(`http://localhost:4000/user/${email}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'
