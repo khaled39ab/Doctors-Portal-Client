@@ -1,4 +1,4 @@
-/* import React from 'react';
+import React from 'react';
 
 const AllPaymentRow = ({ payment, index }) => {
     const { transactionId, patientName, email, treatment } = payment;
@@ -17,4 +17,4 @@ const AllPaymentRow = ({ payment, index }) => {
     );
 };
 
-export default AllPaymentRow; */
+export default AllPaymentRow;

@@ -1,4 +1,4 @@
-/* import React from 'react';
+import React from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../../Shared/Loading/Loading';
 import AllPaymentRow from './AllPaymentRow';
@@ -40,4 +40,4 @@ const AllPayment = () => {
     );
 };
 
-export default AllPayment; */
+export default AllPayment;

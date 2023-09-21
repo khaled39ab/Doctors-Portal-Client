@@ -23,7 +23,7 @@ const AllUsers = () => {
         })
             .then(res => {
                 if (res.status === 403) {
-                    toast.error("You an not make an admin")
+                    toast.error("You can not make an admin")
                 }
                 return res.json();
             })
