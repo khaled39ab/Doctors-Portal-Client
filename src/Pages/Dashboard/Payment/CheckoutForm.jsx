@@ -7,8 +7,9 @@ const CheckoutForm = ({ booking }) => {
     const [cardError, setCardError] = useState('');
     const [success, setSuccess] = useState('');
     const [clientSecret, setClientSecret] = useState("");
+    const [transactionId, setTransactionId] = useState("");
 
-    const { price, patientName, email, phone, treatment } = booking;
+    const { _id, price, patientName, email, phone, treatment } = booking;
 
     useEffect(() => {
         fetch('http://localhost:4000/create-payment-intent', {
@@ -71,13 +72,34 @@ const CheckoutForm = ({ booking }) => {
             },
         );
 
-        if (intentError){
+        if (intentError) {
             setCardError(intentError?.message)
         }
-        else{
+        else {
             setCardError('')
             console.log(paymentIntent);
-            setSuccess('Congrats! Your payment is successfully done.')
+            // setTransactionId(paymentIntent.id);
+            setSuccess(`Congrats! Your payment is successfully done. Transaction id: `)
+
+
+            //store payment info to database
+            const payment = {
+                treatment,
+                transactionId
+            };
+
+            fetch(`http://localhost:4000/bookings/${_id}`, {
+                method: 'PATCH',
+                headers: {
+                    'content-type': 'application/json',
+                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                },
+                body: JSON.stringify(payment)
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
         }
 
     }
@@ -112,7 +134,7 @@ const CheckoutForm = ({ booking }) => {
                 cardError && <p className='text-error'>{cardError}</p>
             }
             {
-                success && <p className='text-success'>{success}</p>
+                success && <p className='text-success font-bold'>{success}</p>
             }
         </div>
     );
