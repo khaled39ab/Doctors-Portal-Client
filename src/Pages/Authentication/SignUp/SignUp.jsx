@@ -46,7 +46,7 @@ const SignUp = () => {
     const saveUser = (name, email) => {
         const user = { name, email }
 
-        fetch(`http://localhost:4000/users`, {
+        fetch(`https://doctors-portal-server-two-eta.vercel.app/users`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

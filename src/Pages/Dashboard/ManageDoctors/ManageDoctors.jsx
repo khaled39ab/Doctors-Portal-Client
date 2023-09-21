@@ -5,7 +5,7 @@ import DoctorRow from './DoctorRow/DoctorRow';
 
 const ManageDoctors = () => {
 
-    const { data: doctors, isLoading, refetch } = useQuery('doctors', () => fetch('http://localhost:4000/doctors', {
+    const { data: doctors, isLoading, refetch } = useQuery('doctors', () => fetch('https://doctors-portal-server-two-eta.vercel.app/doctors', {
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
         }

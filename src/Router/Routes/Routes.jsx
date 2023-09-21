@@ -57,7 +57,7 @@ const router = createBrowserRouter([
                     {
                         path: '/dashboard/users',
                         element: <RequireAdmin><AllUsers /></RequireAdmin>,
-                        loader: () => fetch('http://localhost:4000/users', {
+                        loader: () => fetch('https://doctors-portal-server-two-eta.vercel.app/users', {
                             method: 'GET',
                             headers: {
                                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -67,12 +67,12 @@ const router = createBrowserRouter([
                     {
                         path: '/dashboard/add-doctor',
                         element: <RequireAdmin><AddDoctor /></RequireAdmin>,
-                        loader: () => fetch('http://localhost:4000/specialty')
+                        loader: () => fetch('https://doctors-portal-server-two-eta.vercel.app/specialty')
                     },
                     {
                         path: '/dashboard/manage-doctors',
                         element: <RequireAdmin><ManageDoctors /></RequireAdmin>,
-                        loader: () => fetch('http://localhost:4000/doctors', {
+                        loader: () => fetch('https://doctors-portal-server-two-eta.vercel.app/doctors', {
                             method: 'GET',
                             headers: {
                                 authorization: `Bearer ${localStorage.getItem('accessToken')}`

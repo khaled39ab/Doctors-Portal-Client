@@ -12,7 +12,7 @@ const CheckoutForm = ({ booking }) => {
     const { _id, price, patientName, email, phone, treatment } = booking;
 
     useEffect(() => {
-        fetch('http://localhost:4000/create-payment-intent', {
+        fetch('https://doctors-portal-server-two-eta.vercel.app/create-payment-intent', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -89,7 +89,7 @@ const CheckoutForm = ({ booking }) => {
                 phone
             };
 
-            fetch(`http://localhost:4000/bookings/${_id}`, {
+            fetch(`https://doctors-portal-server-two-eta.vercel.app/bookings/${_id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',

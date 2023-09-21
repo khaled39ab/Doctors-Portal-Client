@@ -5,7 +5,7 @@ const DoctorRow = ({ doctor, index, refetch }) => {
     const { name, email, specialty, img } = doctor;
 
     const handleDelete = email => {
-        fetch(`http://localhost:4000/doctors/${email}`, {
+        fetch(`https://doctors-portal-server-two-eta.vercel.app/doctors/${email}`, {
             method: 'DELETE',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`

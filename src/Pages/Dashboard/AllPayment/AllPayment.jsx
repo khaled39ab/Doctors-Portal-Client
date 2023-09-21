@@ -5,7 +5,7 @@ import AllPaymentRow from './AllPaymentRow';
 
 const AllPayment = () => {
 
-    const { data: allPayment, isLoading } = useQuery('all-payment', () => fetch('http://localhost:4000/all-payment', {
+    const { data: allPayment, isLoading } = useQuery('all-payment', () => fetch('https://doctors-portal-server-two-eta.vercel.app/all-payment', {
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
         }

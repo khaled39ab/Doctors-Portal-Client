@@ -29,7 +29,7 @@ const AddDoctor = () => {
                         img: img
                     }
 
-                    fetch('http://localhost:4000/doctors', {
+                    fetch('https://doctors-portal-server-two-eta.vercel.app/doctors', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
