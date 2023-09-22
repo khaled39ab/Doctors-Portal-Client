@@ -12,7 +12,7 @@ const MyAppointment = () => {
         if (isLoading) {
             return <Loading />
         }
-        fetch(`https://doctors-portal-server-two-eta.vercel.app/bookings?email=${user.email}`, {
+        fetch(`https://doctors-portal-server1.vercel.app/bookings?email=${user.email}`, {
             method: 'GET',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`

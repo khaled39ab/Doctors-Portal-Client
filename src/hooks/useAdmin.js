@@ -7,7 +7,7 @@ const useAdmin = user => {
     useEffect(() => {
         const email = user?.email;
         if (email) {
-            fetch(`https://doctors-portal-server-two-eta.vercel.app/admin/${email}`, {
+            fetch(`https://doctors-portal-server1.vercel.app/admin/${email}`, {
                 method: 'GET',
                 headers: {
                     'content-type': 'application/json',
@@ -18,8 +18,8 @@ const useAdmin = user => {
                 .then(data => {
                     setAdmin(data.admin)
                     setAdminLoading(false)
-                })
-        }
+                });
+        };
 
     }, [user])
 

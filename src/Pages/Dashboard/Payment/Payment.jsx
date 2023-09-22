@@ -11,7 +11,7 @@ const stripePromise = loadStripe(process.env.REACT_APP_stripePK);
 
 const Payment = () => {
     const { id } = useParams();
-    const url = `https://doctors-portal-server-two-eta.vercel.app/bookings/${id}`;
+    const url = `https://doctors-portal-server1.vercel.app/bookings/${id}`;
 
     const { data: booking, isLoading } = useQuery(['bookings', id], () => fetch(url, {
         method: 'GET',
