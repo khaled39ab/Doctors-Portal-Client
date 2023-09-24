@@ -14,3 +14,4 @@
 * It is authentic based website. Where an user create account and take appointment and also can payment about his/her appointment.
 * An admin can control user and service. Admin can add a doctor, managed doctor, user and payment.
 * This project make secure with backend JWT Token and Admin route.
+* '404 page not found' page added. 

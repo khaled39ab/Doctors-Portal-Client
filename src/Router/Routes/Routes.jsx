@@ -16,6 +16,7 @@ import AddDoctor from '../../Pages/Dashboard/AddDoctor/AddDoctor';
 import ManageDoctors from '../../Pages/Dashboard/ManageDoctors/ManageDoctors';
 import Payment from '../../Pages/Dashboard/Payment/Payment';
 import AllPayment from '../../Pages/Dashboard/AllPayment/AllPayment';
+import NotFound from '../../Others/NotFound/NotFound';
 
 const router = createBrowserRouter([
     {
@@ -92,6 +93,10 @@ const router = createBrowserRouter([
             {
                 path: 'signUp',
                 element: <SignUp />
+            },
+            {
+                path: '*',
+                element: <NotFound />
             }
         ]
     }
