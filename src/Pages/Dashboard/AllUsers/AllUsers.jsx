@@ -34,6 +34,10 @@ const AllUsers = () => {
                     toast.success("Successfully made an admin")
                 }
             })
+    };
+
+    const removeUser = email => {
+        
     }
 
 
@@ -48,7 +52,7 @@ const AllUsers = () => {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Make Admin</th>
-                            <th>Remove Admin</th>
+                            <th>Remove User</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -58,7 +62,7 @@ const AllUsers = () => {
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td>{user.role !== 'admin' && <button onClick={() => makeAdmin(user.email)} className="btn btn-outline btn-info btn-sm">Make Admin</button>}</td>
-                                <td><button className="btn btn-outline btn-error btn-sm">Remove Admin</button></td>
+                                <td><button onClick={() => removeUser(user.email)} className="btn btn-outline btn-error btn-sm">Remove User</button></td>
                             </tr>)
                         }
                     </tbody>
